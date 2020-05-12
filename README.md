@@ -1,6 +1,10 @@
 Text preprocessing for Natural Language Processing
 =============
 
+![](https://github.com/berknology/text-preprocessing/workflows/Build/badge.svg)
+![](https://img.shields.io/pypi/v/text-preprocessing.svg)
+
+
 A python package for text preprocessing task in natural language processing.
 
 Usage
