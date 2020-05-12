@@ -1,7 +1,4 @@
-include text_preprocessing/data/business_replacements.csv
 include text_preprocessing/data/custom_substitutions.csv
 include text_preprocessing/data/ignore_spellcheck_words.txt
 
 recursive-include tests *
-recursive-exclude * __pycache__
-recursive-exclude * *.py[co]
