@@ -24,7 +24,7 @@ with open('README.md') as description_file:
 
 setup(
     name='text_preprocessing',
-    version='0.0.1',
+    version='0.0.2',
     description="NLP reusable machine learning solution toolkit",
     long_description=description,
     license="BSD license",
