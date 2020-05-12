@@ -27,6 +27,7 @@ setup(
     version='0.0.2',
     description="A python package for text preprocessing task in natural language processing",
     long_description=description,
+    url='https://github.com/berknology/text-preprocessing',
     license="BSD license",
     author="He Hao",
     author_email='berknology@gmail.com',
