@@ -7,11 +7,11 @@ def parse_requirements(fn):
 
 
 parsed_requirements = parse_requirements(
-    'requirements/requirements.txt',
+    'requirements.txt',
 )
 
 parsed_test_requirements = parse_requirements(
-    'requirements/requirements.txt',
+    'requirements.txt',
 )
 
 requirements = [str(ir) for ir in parsed_requirements]
@@ -25,7 +25,7 @@ with open('README.md') as description_file:
 setup(
     name='text_preprocessing',
     version='0.0.2',
-    description="NLP reusable machine learning solution toolkit",
+    description="A python package for text preprocessing task in natural language processing",
     long_description=description,
     license="BSD license",
     author="He Hao",
