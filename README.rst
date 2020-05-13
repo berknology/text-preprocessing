@@ -25,23 +25,30 @@ To use this text preprocessing package,
 
 Features
 --------
-* convert to lower case
-* convert to upper case
-* keep only alphabetic and numerical characters
-* check and correct spellings
-* expand contractions
-* remove URL
-* remove name
-* remove email
-* remove phone number
-* remove SSN
-* remove credit card number
-* remove numbers
-* remove special characters
-* remove punctuations
-* remove extra whitespace
-* normalize unicode (e.g., Café -> Cafe)
-* remove stop words
-* substitute custom word (e.g., msft -> Microsoft)
-* stem words
-* lemmatize words
+
+.. csv-table::
+   :header: "Feature", "Function"
+   :widths: 50, 35
+
+    "convert to lower case", "to_lower"
+    "convert to upper case", "to_upper"
+    "keep only alphabetic and numerical characters", "keep_alpha_numeric"
+    "check and correct spellings", "check_spelling"
+    "expand contractions", "expand_contraction"
+    "remove URLs", "remove_url"
+    "remove names", "remove_name"
+    "remove emails", "remove_email"
+    "remove phone numbers", "remove_phone_number"
+    "remove SSNs", "remove_ssn"
+    "remove credit card numbers", "remove_credit_card_number"
+    "remove numbers", "remove_number"
+    "remove special characters", "remove_special_character"
+    "remove punctuations", "remove_punctuation"
+    "remove extra whitespace", "remove_whitespace"
+    "normalize unicode (e.g., Café -> Cafe)", "normalize_unicode"
+    "remove stop words", "remove_stopword"
+    "tokenize words", "tokenize_word"
+    "tokenize sentences", "tokenize_sentence"
+    "substitute custom words (e.g., msft -> Microsoft)", "substitute_token"
+    "stem words", "stem_word"
+    "lemmatize words", "lemmatize_word"
