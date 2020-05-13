@@ -36,28 +36,29 @@ print(preprocessed_text)
 Features
 --------
 
-| Feature                                                       | Function                  |
-| :------------------------------------------------------------ |:------------------------- |
-| convert to lower case                                         | to_lower                  |
-| convert to upper case                                         | to_upper                  |
-| keep only alphabetic and numerical characters                 | keep_alpha_numeric        |
-| check and correct spellings                                   | check_spelling            |
-| expand contractions                                           | expand_contraction        |
-| remove URLs                                                   | remove_url                |
-| remove names                                                  | remove_name               |
-| remove emails                                                 | remove_email              |
-| remove phone numbers                                          | remove_phone_number       |
-| remove SSNs                                                   | remove_ssn                |
-| remove credit card numbers                                    | remove_credit_card_number |
-| remove numbers                                                | remove_number             |
-| remove special characters                                     | remove_special_character  |
-| remove punctuations                                           | remove_punctuation        |
-| remove extra whitespace                                       | remove_whitespace         |
-| normalize unicode (e.g., Café -> Cafe)                        | normalize_unicode         |
-| remove stop words                                             | remove_stopword           |
-| tokenize words                                                | tokenize_word             |
-| tokenize sentences                                            | tokenize_sentence         |
-| substitute custom words (e.g., msft -> Microsoft)             | substitute_token          |
-| stem words                                                    | stem_word                 |
-| lemmatize words                                               | lemmatize_word            |
-| preprocess text through a sequence of preprocessing functions | preprocess_text           |
+| Feature                                                       | Function                              |
+| :------------------------------------------------------------ |:------------------------------------- |
+| convert to lower case                                         | to_lower                              |
+| convert to upper case                                         | to_upper                              |
+| keep only alphabetic and numerical characters                 | keep_alpha_numeric                    |
+| check and correct spellings                                   | check_spelling                        |
+| expand contractions                                           | expand_contraction                    |
+| remove URLs                                                   | remove_url                            |
+| remove names                                                  | remove_name                           |
+| remove emails                                                 | remove_email                          |
+| remove phone numbers                                          | remove_phone_number                   |
+| remove SSNs                                                   | remove_ssn                            |
+| remove credit card numbers                                    | remove_credit_card_number             |
+| remove numbers                                                | remove_number                         |
+| remove bullets and numbering                                  | remove_itemized_bullet_and_numbering  |
+| remove special characters                                     | remove_special_character              |
+| remove punctuations                                           | remove_punctuation                    |
+| remove extra whitespace                                       | remove_whitespace                     |
+| normalize unicode (e.g., Café -> Cafe)                        | normalize_unicode                     |
+| remove stop words                                             | remove_stopword                       |
+| tokenize words                                                | tokenize_word                         |
+| tokenize sentences                                            | tokenize_sentence                     |
+| substitute custom words (e.g., msft -> Microsoft)             | substitute_token                      |
+| stem words                                                    | stem_word                             |
+| lemmatize words                                               | lemmatize_word                        |
+| preprocess text through a sequence of preprocessing functions | preprocess_text                       |

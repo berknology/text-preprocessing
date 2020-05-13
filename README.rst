@@ -52,6 +52,7 @@ Features
     "remove SSNs", "remove_ssn"
     "remove credit card numbers", "remove_credit_card_number"
     "remove numbers", "remove_number"
+    "remove bullets and numbering", "remove_itemized_bullet_and_numbering"
     "remove special characters", "remove_special_character"
     "remove punctuations", "remove_punctuation"
     "remove extra whitespace", "remove_whitespace"
