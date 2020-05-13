@@ -6,7 +6,8 @@ from unittest.mock import patch, MagicMock
 from text_preprocessing import (to_lower, to_upper, remove_number, remove_url, remove_punctuation,
                                 remove_special_character, keep_alpha_numeric, remove_whitespace, expand_contraction,
                                 normalize_unicode, remove_stopword, remove_email, remove_phone_number, remove_ssn,
-                                remove_credit_card_number, remove_name, check_spelling, substitute_token)
+                                remove_credit_card_number, remove_name, check_spelling, substitute_token,
+                                lemmatize_word)
 from text_preprocessing import preprocess_text
 
 
@@ -924,3 +925,23 @@ class TestTextPreprocessing(TestCase):
         mock_remove_url.assert_called_once()
         mock_remove_email.assert_called_once()
         mock_remove_phone_number.assert_called_once()
+
+    def test_preprocess_text_integration_a(self):
+        # Setup
+        input_text = 'Helllo, I am John Doe!!!   My email is john.doe@email.com. Please visit my website ' \
+                     'www.johndoe.com '
+        expected_output = 'hello email please visit website'
+        # Actual call
+        output_text = preprocess_text(input_text)
+        # Asserts
+        self.assertEqual(output_text, expected_output)
+
+    def test_preprocess_text_integration_custom(self):
+        # Setup
+        input_text = 'Helllo, I am John Doe!!! My email is john.doe@email.com. Visit my website www.johndoe.com '
+        expected_output = 'helllo i am john doe my email is  visit my website  '
+        # Actual call
+        pipeline_functions = [to_lower, remove_url, remove_email, remove_punctuation]
+        output_text = preprocess_text(input_text, pipeline_functions)
+        # Asserts
+        self.assertEqual(output_text, expected_output)

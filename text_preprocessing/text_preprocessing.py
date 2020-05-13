@@ -305,7 +305,10 @@ def preprocess_text(input_text: str, processing_function_list: Optional[List[Cal
                                     lemmatize_word]
     for func in processing_function_list:
         input_text = func(input_text)
-    processed_text = ' '.join(input_text)
+    if isinstance(input_text, str):
+        processed_text = input_text
+    else:
+        processed_text = ' '.join(input_text)
     return processed_text
 
 
