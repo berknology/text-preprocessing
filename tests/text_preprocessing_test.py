@@ -7,7 +7,7 @@ from text_preprocessing import (to_lower, to_upper, remove_number, remove_url, r
                                 remove_special_character, keep_alpha_numeric, remove_whitespace, expand_contraction,
                                 normalize_unicode, remove_stopword, remove_email, remove_phone_number, remove_ssn,
                                 remove_credit_card_number, remove_name, check_spelling, substitute_token,
-                                lemmatize_word)
+                                remove_itemized_bullet_and_numbering)
 from text_preprocessing import preprocess_text
 
 
@@ -145,6 +145,51 @@ class TestTextPreprocessing(TestCase):
         expected_output = ''
         # Actual call
         output_text = remove_number(input_text)
+        # Asserts
+        self.assertEqual(output_text, expected_output)
+
+    def test_remove_itemized_bullet_and_numbering(self):
+        # Setup
+        input_text = 'My comments: 1) blah blah, 2. blah blah. III) blah blah; iv) blah blah, (d) blah blah'
+        expected_output = 'My comments: blah blah, blah blah. blah blah; blah blah,  blah blah'
+        # Actual call
+        output_text = remove_itemized_bullet_and_numbering(input_text)
+        # Asserts
+        self.assertEqual(output_text, expected_output)
+
+    def test_remove_itemized_bullet_and_numbering_no_bullet_or_numbering(self):
+        # Setup
+        input_text = 'hello, this is a test. '
+        expected_output = 'hello, this is a test. '
+        # Actual call
+        output_text = remove_itemized_bullet_and_numbering(input_text)
+        # Asserts
+        self.assertEqual(output_text, expected_output)
+
+    def test_remove_itemized_bullet_and_numbering_all_bullets_and_numberings(self):
+        # Setup
+        input_text = ' 1) test 2. test. (3) test  a) test (b) test E) test. (F) test. (i) a vx) b IV. c'
+        expected_output = ' test test.  test  test  test test.  test.  a b c'
+        # Actual call
+        output_text = remove_itemized_bullet_and_numbering(input_text)
+        # Asserts
+        self.assertEqual(output_text, expected_output)
+
+    def test_remove_itemized_bullet_and_numbering_none(self):
+        # Setup
+        input_text = None
+        expected_output = ''
+        # Actual call
+        output_text = remove_itemized_bullet_and_numbering(input_text)
+        # Asserts
+        self.assertEqual(output_text, expected_output)
+
+    def test_remove_itemized_bullet_and_numbering_empty_input(self):
+        # Setup
+        input_text = ''
+        expected_output = ''
+        # Actual call
+        output_text = remove_itemized_bullet_and_numbering(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 

@@ -88,6 +88,13 @@ def remove_number(input_text: str) -> str:
 
 
 @_return_empty_string_for_invalid_input
+def remove_itemized_bullet_and_numbering(input_text: str) -> str:
+    """ Remove bullets or numbering in itemized input """
+    processed_text = re.sub('[\(\s][0-9a-zA-Z][.)]\s+|[\(\s][ivxIVX]+[.)]\s+', ' ', input_text)
+    return processed_text
+
+
+@_return_empty_string_for_invalid_input
 def remove_url(input_text: str) -> str:
     """ Remove url in the input text """
     return re.sub(r"(www|http)\S+", "", input_text)
