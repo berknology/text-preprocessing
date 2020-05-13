@@ -18,7 +18,7 @@ requirements = [str(ir) for ir in parsed_requirements]
 test_requirements = [str(tr) for tr in parsed_test_requirements]
 
 
-with open('README.rst') as description_file:
+with open('DESCRIPTION.rst') as description_file:
     description = description_file.read()
 
 
