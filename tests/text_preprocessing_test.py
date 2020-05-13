@@ -908,6 +908,7 @@ class TestTextPreprocessing(TestCase):
     @patch("text_preprocessing.text_preprocessing.remove_url", autospec=True)
     @patch("text_preprocessing.text_preprocessing.remove_email", autospec=True)
     @patch("text_preprocessing.text_preprocessing.remove_phone_number", autospec=True)
+    @patch("text_preprocessing.text_preprocessing.remove_itemized_bullet_and_numbering", autospec=True)
     @patch("text_preprocessing.text_preprocessing.expand_contraction", autospec=True)
     @patch("text_preprocessing.text_preprocessing.check_spelling", autospec=True)
     @patch("text_preprocessing.text_preprocessing.remove_special_character", autospec=True)
@@ -929,6 +930,7 @@ class TestTextPreprocessing(TestCase):
                              mock_remove_special_character: MagicMock,
                              mock_check_spelling: MagicMock,
                              mock_expand_contraction: MagicMock,
+                             mock_remove_itemized_bullet_and_numbering: MagicMock,
                              mock_remove_phone_number: MagicMock,
                              mock_remove_email: MagicMock,
                              mock_remove_url: MagicMock,
@@ -942,6 +944,7 @@ class TestTextPreprocessing(TestCase):
         mock_remove_url.assert_called_once()
         mock_remove_email.assert_called_once()
         mock_remove_phone_number.assert_called_once()
+        mock_remove_itemized_bullet_and_numbering.assert_called_once()
         mock_expand_contraction.assert_called_once()
         mock_check_spelling.assert_called_once()
         mock_remove_special_character.assert_called_once()

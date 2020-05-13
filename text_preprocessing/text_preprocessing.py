@@ -300,6 +300,7 @@ def preprocess_text(input_text: str, processing_function_list: Optional[List[Cal
                                     remove_url,
                                     remove_email,
                                     remove_phone_number,
+                                    remove_itemized_bullet_and_numbering,
                                     expand_contraction,
                                     check_spelling,
                                     remove_special_character,
