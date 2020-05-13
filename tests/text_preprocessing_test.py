@@ -3,10 +3,10 @@ from unittest import TestCase
 from unittest.mock import patch, MagicMock
 
 # Project code
-from text_preprocessing import (to_lower, to_upper, remove_number, remove_url, remove_punctuations,
-                                remove_special_characters, keep_alpha_numeric, remove_whitespace, expand_contractions,
-                                normalize_unicode, remove_stopwords, remove_email, remove_phone_number, remove_ssn,
-                                remove_credit_card_number, remove_names, check_spelling, substitute_token)
+from text_preprocessing import (to_lower, to_upper, remove_number, remove_url, remove_punctuation,
+                                remove_special_character, keep_alpha_numeric, remove_whitespace, expand_contraction,
+                                normalize_unicode, remove_stopword, remove_email, remove_phone_number, remove_ssn,
+                                remove_credit_card_number, remove_name, check_spelling, substitute_token)
 from text_preprocessing import preprocess_text
 
 
@@ -192,93 +192,93 @@ class TestTextPreprocessing(TestCase):
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_punctuations(self):
+    def test_remove_punctuation(self):
         # Setup
         input_text = 'Hello!!! Welcome.'
         expected_output = 'Hello Welcome'
         # Actual call
-        output_text = remove_punctuations(input_text)
+        output_text = remove_punctuation(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_punctuations_no_punctuations(self):
+    def test_remove_punctuation_no_punctuations(self):
         # Setup
         input_text = 'Hello world'
         expected_output = 'Hello world'
         # Actual call
-        output_text = remove_punctuations(input_text)
+        output_text = remove_punctuation(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_punctuations_all_punctuations(self):
+    def test_remove_punctuation_all_punctuations(self):
         # Setup
         input_text = '!"#$%&\'()*+,-./:;<=>?@[\\]^_{|}~'
         expected_output = ''
         # Actual call
-        output_text = remove_punctuations(input_text)
+        output_text = remove_punctuation(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_punctuations_none(self):
+    def test_remove_punctuation_none(self):
         # Setup
         input_text = None
         expected_output = ''
         # Actual call
-        output_text = remove_punctuations(input_text)
+        output_text = remove_punctuation(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_punctuations_empty_input(self):
+    def test_remove_punctuation_empty_input(self):
         # Setup
         input_text = ''
         expected_output = ''
         # Actual call
-        output_text = remove_punctuations(input_text)
+        output_text = remove_punctuation(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_special_characters(self):
+    def test_remove_special_character(self):
         # Setup
         input_text = 'Hello å¼« Welcome.'
         expected_output = 'Hello  Welcome.'
         # Actual call
-        output_text = remove_special_characters(input_text)
+        output_text = remove_special_character(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_special_characters_no_punctuations(self):
+    def test_remove_special_character_no_special_characters(self):
         # Setup
         input_text = 'Hello world'
         expected_output = 'Hello world'
         # Actual call
-        output_text = remove_special_characters(input_text)
+        output_text = remove_special_character(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_special_characters_all_punctuations(self):
+    def test_remove_special_character_all_special_characters(self):
         # Setup
         input_text = 'å¼«¥ª°©ð±§µæ¹¢³¿®ä£'
         expected_output = ''
         # Actual call
-        output_text = remove_special_characters(input_text)
+        output_text = remove_special_character(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_special_characters_none(self):
+    def test_remove_special_character_none(self):
         # Setup
         input_text = None
         expected_output = ''
         # Actual call
-        output_text = remove_special_characters(input_text)
+        output_text = remove_special_character(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_special_characters_empty_input(self):
+    def test_remove_special_character_empty_input(self):
         # Setup
         input_text = ''
         expected_output = ''
         # Actual call
-        output_text = remove_special_characters(input_text)
+        output_text = remove_special_character(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
@@ -372,48 +372,48 @@ class TestTextPreprocessing(TestCase):
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_expand_contractions(self):
+    def test_expand_contraction(self):
         # Setup
         input_text = "This isn't a test"
         expected_output = 'This is not a test'
         # Actual call
-        output_text = expand_contractions(input_text)
+        output_text = expand_contraction(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_expand_contractions_no_contractions(self):
+    def test_expand_contraction_no_contraction(self):
         # Setup
         input_text = 'Hello world'
         expected_output = 'Hello world'
         # Actual call
-        output_text = expand_contractions(input_text)
+        output_text = expand_contraction(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_expand_contractions_all_contractions(self):
+    def test_expand_contraction_all_contractions(self):
         # Setup
         input_text = "cannot isn't ain't couldn't"
         expected_output = 'cannot is not are not could not'
         # Actual call
-        output_text = expand_contractions(input_text)
+        output_text = expand_contraction(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_expand_contractions_none(self):
+    def test_expand_contraction_none(self):
         # Setup
         input_text = None
         expected_output = ''
         # Actual call
-        output_text = expand_contractions(input_text)
+        output_text = expand_contraction(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_expand_contractions_empty_input(self):
+    def test_expand_contraction_empty_input(self):
         # Setup
         input_text = ''
         expected_output = ''
         # Actual call
-        output_text = expand_contractions(input_text)
+        output_text = expand_contraction(input_text)
         # Asserts
         self.assertEqual(output_text, expected_output)
 
@@ -462,48 +462,48 @@ class TestTextPreprocessing(TestCase):
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_stopwords(self):
+    def test_remove_stopword(self):
         # Setup
         input_text = "This is a test!"
         expected_output = ['This', 'test', '!']
         # Actual call
-        output_text = remove_stopwords(input_text)
+        output_text = remove_stopword(input_text)
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
-    def test_remove_stopwords_no_stopwords(self):
+    def test_remove_stopword_no_stopword(self):
         # Setup
         input_text = 'Hello World.'
         expected_output = ['Hello', 'World', '.']
         # Actual call
-        output_text = remove_stopwords(input_text)
+        output_text = remove_stopword(input_text)
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
-    def test_remove_stopwords_all_stopwords(self):
+    def test_remove_stopword_all_stopwords(self):
         # Setup
         input_text = 'the a your my his her'
         expected_output = []
         # Actual call
-        output_text = remove_stopwords(input_text)
+        output_text = remove_stopword(input_text)
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
-    def test_remove_stopwords_none(self):
+    def test_remove_stopword_none(self):
         # Setup
         input_text = None
         expected_output = []
         # Actual call
-        output_text = remove_stopwords(input_text)
+        output_text = remove_stopword(input_text)
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
-    def test_remove_stopwords_empty_input(self):
+    def test_remove_stopword_empty_input(self):
         # Setup
         input_text = ''
         expected_output = []
         # Actual call
-        output_text = remove_stopwords(input_text)
+        output_text = remove_stopword(input_text)
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
@@ -687,48 +687,48 @@ class TestTextPreprocessing(TestCase):
         # Asserts
         self.assertEqual(output_text, expected_output)
 
-    def test_remove_names(self):
+    def test_remove_name(self):
         # Setup
         input_text = "My name is Lionel Messi"
         expected_output = ['My', 'name', 'is']
         # Actual call
-        output_text = remove_names(input_text)
+        output_text = remove_name(input_text)
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
-    def test_remove_names_no_names(self):
+    def test_remove_name_no_name(self):
         # Setup
         input_text = 'Hello World.'
         expected_output = ['Hello', 'World', '.']
         # Actual call
-        output_text = remove_names(input_text)
+        output_text = remove_name(input_text)
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
-    def test_remove_names_all_names(self):
+    def test_remove_name_all_names(self):
         # Setup
         input_text = 'Paul Allen John Doe Jane Doe Lebron James'
         expected_output = []
         # Actual call
-        output_text = remove_names(input_text)
+        output_text = remove_name(input_text)
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
-    def test_remove_names_none(self):
+    def test_remove_name_none(self):
         # Setup
         input_text = None
         expected_output = []
         # Actual call
-        output_text = remove_names(input_text)
+        output_text = remove_name(input_text)
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
-    def test_remove_names_empty_input(self):
+    def test_remove_name_empty_input(self):
         # Setup
         input_text = ''
         expected_output = []
         # Actual call
-        output_text = remove_names(input_text)
+        output_text = remove_name(input_text)
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
@@ -822,7 +822,7 @@ class TestTextPreprocessing(TestCase):
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
-    def test_substitute_no_custom_token(self):
+    def test_substitute_token_no_custom_token(self):
         # Setup
         input_list = ['hello', 'world']
         expected_output = ['hello', 'world']
@@ -831,7 +831,7 @@ class TestTextPreprocessing(TestCase):
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
-    def test_substitute_all_custom_tokens(self):
+    def test_substitute_token_all_custom_tokens(self):
         # Setup
         input_list = ['fyi', 'btw', 'apr', 'mon']
         expected_output = ['for your information', 'by the way', 'April', 'Monday']
@@ -862,27 +862,27 @@ class TestTextPreprocessing(TestCase):
     @patch("text_preprocessing.text_preprocessing.remove_url", autospec=True)
     @patch("text_preprocessing.text_preprocessing.remove_email", autospec=True)
     @patch("text_preprocessing.text_preprocessing.remove_phone_number", autospec=True)
-    @patch("text_preprocessing.text_preprocessing.expand_contractions", autospec=True)
+    @patch("text_preprocessing.text_preprocessing.expand_contraction", autospec=True)
     @patch("text_preprocessing.text_preprocessing.check_spelling", autospec=True)
-    @patch("text_preprocessing.text_preprocessing.remove_special_characters", autospec=True)
-    @patch("text_preprocessing.text_preprocessing.remove_punctuations", autospec=True)
+    @patch("text_preprocessing.text_preprocessing.remove_special_character", autospec=True)
+    @patch("text_preprocessing.text_preprocessing.remove_punctuation", autospec=True)
     @patch("text_preprocessing.text_preprocessing.remove_whitespace", autospec=True)
     @patch("text_preprocessing.text_preprocessing.normalize_unicode", autospec=True)
-    @patch("text_preprocessing.text_preprocessing.remove_stopwords", autospec=True)
-    @patch("text_preprocessing.text_preprocessing.remove_names", autospec=True)
+    @patch("text_preprocessing.text_preprocessing.remove_stopword", autospec=True)
+    @patch("text_preprocessing.text_preprocessing.remove_name", autospec=True)
     @patch("text_preprocessing.text_preprocessing.substitute_token", autospec=True)
     @patch("text_preprocessing.text_preprocessing.lemmatize_word", autospec=True)
     def test_preprocess_text(self,
                              mock_lemmatize_word: MagicMock,
                              mock_substitute_token: MagicMock,
-                             mock_remove_names: MagicMock,
-                             mock_remove_stopwords: MagicMock,
+                             mock_remove_name: MagicMock,
+                             mock_remove_stopword: MagicMock,
                              mock_normalize_unicode: MagicMock,
                              mock_remove_whitespace: MagicMock,
-                             mock_remove_punctuations: MagicMock,
-                             mock_remove_special_characters: MagicMock,
+                             mock_remove_punctuation: MagicMock,
+                             mock_remove_special_character: MagicMock,
                              mock_check_spelling: MagicMock,
-                             mock_expand_contractions: MagicMock,
+                             mock_expand_contraction: MagicMock,
                              mock_remove_phone_number: MagicMock,
                              mock_remove_email: MagicMock,
                              mock_remove_url: MagicMock,
@@ -896,14 +896,14 @@ class TestTextPreprocessing(TestCase):
         mock_remove_url.assert_called_once()
         mock_remove_email.assert_called_once()
         mock_remove_phone_number.assert_called_once()
-        mock_expand_contractions.assert_called_once()
+        mock_expand_contraction.assert_called_once()
         mock_check_spelling.assert_called_once()
-        mock_remove_special_characters.assert_called_once()
-        mock_remove_punctuations.assert_called_once()
+        mock_remove_special_character.assert_called_once()
+        mock_remove_punctuation.assert_called_once()
         mock_remove_whitespace.assert_called_once()
         mock_normalize_unicode.assert_called_once()
-        mock_remove_stopwords.assert_called_once()
-        mock_remove_names.assert_called_once()
+        mock_remove_stopword.assert_called_once()
+        mock_remove_name.assert_called_once()
         mock_substitute_token.assert_called_once()
         mock_lemmatize_word.assert_called_once()
 

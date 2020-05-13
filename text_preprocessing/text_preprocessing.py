@@ -94,7 +94,7 @@ def remove_url(input_text: str) -> str:
 
 
 @_return_empty_string_for_invalid_input
-def remove_punctuations(input_text: str, punctuations: Optional[str] = None) -> str:
+def remove_punctuation(input_text: str, punctuations: Optional[str] = None) -> str:
     """
     Removes all punctuations from a string, as defined by string.punctuation or a custom list.
     For reference, Python's string.punctuation is equivalent to '!"#$%&\'()*+,-./:;<=>?@[\\]^_{|}~'
@@ -106,7 +106,7 @@ def remove_punctuations(input_text: str, punctuations: Optional[str] = None) -> 
 
 
 @_return_empty_string_for_invalid_input
-def remove_special_characters(input_text: str, special_characters: Optional[str] = None) -> str:
+def remove_special_character(input_text: str, special_characters: Optional[str] = None) -> str:
     """ Removes special characters """
     if special_characters is None:
         # TODO: add more special characters
@@ -130,7 +130,7 @@ def remove_whitespace(input_text: str, remove_duplicate_whitespace: bool = True)
 
 
 @_return_empty_string_for_invalid_input
-def expand_contractions(input_text: str) -> str:
+def expand_contraction(input_text: str) -> str:
     """ Expand contractions in input text """
     return contractions.fix(input_text)
 
@@ -143,7 +143,7 @@ def normalize_unicode(input_text: str) -> str:
 
 
 @_return_empty_list_for_invalid_input
-def remove_stopwords(input_text_or_list: Union[str, List[str]]) -> List[str]:
+def remove_stopword(input_text_or_list: Union[str, List[str]]) -> List[str]:
     """ Remove stop words """
     stop_words = set(stopwords.words('english'))
     if isinstance(input_text_or_list, str):
@@ -187,7 +187,7 @@ def remove_credit_card_number(input_text: str) -> str:
 
 
 @_return_empty_list_for_invalid_input
-def remove_names(input_text_or_list: Union[str, List[str]]) -> List[str]:
+def remove_name(input_text_or_list: Union[str, List[str]]) -> List[str]:
     """ Remove name in the input text """
     name_searcher = NameDataset()
     if isinstance(input_text_or_list, str):
@@ -293,14 +293,14 @@ def preprocess_text(input_text: str, processing_function_list: Optional[List[Cal
                                     remove_url,
                                     remove_email,
                                     remove_phone_number,
-                                    expand_contractions,
+                                    expand_contraction,
                                     check_spelling,
-                                    remove_special_characters,
-                                    remove_punctuations,
+                                    remove_special_character,
+                                    remove_punctuation,
                                     remove_whitespace,
                                     normalize_unicode,
-                                    remove_stopwords,
-                                    remove_names,
+                                    remove_stopword,
+                                    remove_name,
                                     substitute_token,
                                     lemmatize_word]
     for func in processing_function_list:
@@ -314,6 +314,6 @@ if __name__ == '__main__':
     preprocessed_text = preprocess_text(text_to_process)
     print(preprocessed_text)
 
-    preprocess_functions = [to_lower, remove_email, remove_url, remove_punctuations, lemmatize_word]
+    preprocess_functions = [to_lower, remove_email, remove_url, remove_punctuation, lemmatize_word]
     preprocessed_text = preprocess_text(text_to_process, preprocess_functions)
     print(preprocessed_text)
