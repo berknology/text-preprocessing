@@ -1,6 +1,6 @@
-nltk==3.5
-pyspellchecker==0.5.4
-contractions==0.0.24
-names-dataset==1.9.1
+nltk
+pyspellchecker
+contractions
+names-dataset
 # For unit test
-unittest-xml-reporting==2.1.0
+unittest-xml-reporting
