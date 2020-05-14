@@ -17,9 +17,9 @@ from nltk.stem import PorterStemmer, SnowballStemmer, LancasterStemmer, WordNetL
 from spellchecker import SpellChecker
 from names_dataset import NameDataset
 
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('punkt')
+nltk.download('stopwords', quiet=True)
+nltk.download('wordnet', quiet=True)
+nltk.download('punkt', quiet=True)
 
 _CUSTOM_SUB_CSV_FILE_PATH = Path(__file__).resolve().parent / 'data' / 'custom_substitutions.csv'
 _IGNORE_SPELLCHECK_WORD_FILE_PATH = Path(__file__).resolve().parent / 'data' / 'ignore_spellcheck_words.txt'
