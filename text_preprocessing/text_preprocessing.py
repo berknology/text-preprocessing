@@ -38,7 +38,7 @@ def _return_empty_string_for_invalid_input(func):
             try:
                 input_text = args[0]
             except IndexError as e:
-                LOGGER.exception("No appropriate positional argument is provide.")
+                LOGGER.exception('No appropriate positional argument is provide.')
                 raise e
         if input_text is None or len(input_text) == 0:
             return ''
@@ -57,7 +57,7 @@ def _return_empty_list_for_invalid_input(func):
             try:
                 input_text_or_list = args[0]
             except IndexError as e:
-                LOGGER.exception("No appropriate positional argument is provide.")
+                LOGGER.exception('No appropriate positional argument is provide.')
                 raise e
         if input_text_or_list is None or len(input_text_or_list) == 0:
             return []
@@ -69,35 +69,33 @@ def _return_empty_list_for_invalid_input(func):
 @_return_empty_string_for_invalid_input
 def to_lower(input_text: str) -> str:
     """ Convert input text to lower case """
-    processed_text = input_text.lower()
-    return processed_text
+    return input_text.lower()
 
 
 @_return_empty_string_for_invalid_input
 def to_upper(input_text: str) -> str:
     """ Convert input text to upper case """
-    processed_text = input_text.upper()
-    return processed_text
+    return input_text.upper()
 
 
 @_return_empty_string_for_invalid_input
 def remove_number(input_text: str) -> str:
     """ Remove number in the input text """
-    processed_text = re.sub(r'\d+', '', input_text)
+    processed_text = re.sub('\d+', '', input_text)
     return processed_text
 
 
 @_return_empty_string_for_invalid_input
 def remove_itemized_bullet_and_numbering(input_text: str) -> str:
     """ Remove bullets or numbering in itemized input """
-    processed_text = re.sub('[\(\s][0-9a-zA-Z][.)]\s+|[\(\s][ivxIVX]+[.)]\s+', ' ', input_text)
+    processed_text = re.sub('[(\s][0-9a-zA-Z][.)]\s+|[(\s][ivxIVX]+[.)]\s+', ' ', input_text)
     return processed_text
 
 
 @_return_empty_string_for_invalid_input
 def remove_url(input_text: str) -> str:
     """ Remove url in the input text """
-    return re.sub(r"(www|http)\S+", "", input_text)
+    return re.sub('(www|http)\S+', '', input_text)
 
 
 @_return_empty_string_for_invalid_input
@@ -108,7 +106,7 @@ def remove_punctuation(input_text: str, punctuations: Optional[str] = None) -> s
     """
     if punctuations is None:
         punctuations = string.punctuation
-    processed_text = input_text.translate(str.maketrans("", "", punctuations))
+    processed_text = input_text.translate(str.maketrans('', '', punctuations))
     return processed_text
 
 
@@ -118,7 +116,7 @@ def remove_special_character(input_text: str, special_characters: Optional[str] 
     if special_characters is None:
         # TODO: add more special characters
         special_characters = 'å¼«¥ª°©ð±§µæ¹¢³¿®ä£'
-    processed_text = input_text.translate(str.maketrans("", "", special_characters))
+    processed_text = input_text.translate(str.maketrans('', '', special_characters))
     return processed_text
 
 
@@ -132,7 +130,7 @@ def keep_alpha_numeric(input_text: str) -> str:
 def remove_whitespace(input_text: str, remove_duplicate_whitespace: bool = True) -> str:
     """ Removes leading, trailing, and (optionally) duplicated whitespace """
     if remove_duplicate_whitespace:
-        return " ".join(re.split(r'\s+', input_text.strip(), flags=re.UNICODE))
+        return ' '.join(re.split('\s+', input_text.strip(), flags=re.UNICODE))
     return input_text.strip()
 
 
@@ -150,9 +148,14 @@ def normalize_unicode(input_text: str) -> str:
 
 
 @_return_empty_list_for_invalid_input
-def remove_stopword(input_text_or_list: Union[str, List[str]]) -> List[str]:
-    """ Remove stop words """
+def remove_stopword(input_text_or_list: Union[str, List[str]], exceptions: Optional[set] = None) -> List[str]:
+    """ Remove stop words. By default 'not', 'no', and 'nor' are filtered out from stop words. """
     stop_words = set(stopwords.words('english'))
+    # Ignore negative words for later sentiment analysis task. Negative teams such as 'isn't' will be expanded as
+    # 'is not' by the expand_contraction function if it is used in the preprocessing pipeline
+    if exceptions is None:
+        exceptions = {'not', 'no', 'nor'}
+    stop_words -= exceptions
     if isinstance(input_text_or_list, str):
         tokens = word_tokenize(input_text_or_list)
         processed_tokens = [token for token in tokens if token not in stop_words]
@@ -165,32 +168,32 @@ def remove_stopword(input_text_or_list: Union[str, List[str]]) -> List[str]:
 @_return_empty_string_for_invalid_input
 def remove_email(input_text: str) -> str:
     """ Remove email in the input text """
-    regex_pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"
-    return re.sub(regex_pattern, "", input_text)
+    regex_pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}'
+    return re.sub(regex_pattern, '', input_text)
 
 
 @_return_empty_string_for_invalid_input
 def remove_phone_number(input_text: str) -> str:
     """ Remove phone number in the input text """
-    regex_pattern = "(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?"
-    return re.sub(regex_pattern, "", input_text)
+    regex_pattern = '(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?'
+    return re.sub(regex_pattern, '', input_text)
 
 
 @_return_empty_string_for_invalid_input
 def remove_ssn(input_text: str) -> str:
     """ Remove social security number in the input text """
-    regex_pattern = "(?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4}|(" \
-                    "?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4}"
-    return re.sub(regex_pattern, "", input_text)
+    regex_pattern = '(?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4}|(' \
+                    '?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4}'
+    return re.sub(regex_pattern, '', input_text)
 
 
 @_return_empty_string_for_invalid_input
 def remove_credit_card_number(input_text: str) -> str:
     """ Remove credit card number in the input text """
-    regex_pattern = "(4[0-9]{12}(?:[0-9]{3})?|(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][" \
-                    "0-9]|2720)[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(" \
-                    "?:2131|1800|35\d{3})\d{11})"
-    return re.sub(regex_pattern, "", input_text)
+    regex_pattern = '(4[0-9]{12}(?:[0-9]{3})?|(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][' \
+                    '0-9]|2720)[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(' \
+                    '?:2131|1800|35\d{3})\d{11})'
+    return re.sub(regex_pattern, '', input_text)
 
 
 @_return_empty_list_for_invalid_input
@@ -209,7 +212,7 @@ def remove_name(input_text_or_list: Union[str, List[str]]) -> List[str]:
     return processed_tokens
 
 
-def check_spelling(input_text_or_list: Union[str, List[str]], lang="en",
+def check_spelling(input_text_or_list: Union[str, List[str]], lang='en',
                    ignore_word_file_path: Union[str, Path] = _IGNORE_SPELLCHECK_WORD_FILE_PATH) -> str:
     """ Check and correct spellings of the text list """
     if input_text_or_list is None or len(input_text_or_list) == 0:
@@ -276,7 +279,7 @@ def lemmatize_word(input_text_or_list: Union[str, List[str]],
 
 
 def substitute_token(token_list: List[str], sub_dict: Optional[dict] = None) -> List[str]:
-    """ Substitute each token by another token, e.g., "vs" -> "versus" """
+    """ Substitute each token by another token, e.g., 'vs' -> 'versus' """
     # TODO: add more custom substitutions in the csv file specified by _CUSTOM_SUB_CSV_FILE_PATH
     if token_list is None or len(token_list) == 0:
         return []
