@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 def parse_requirements(fn):
     with open(fn) as f:
-        return [req for req in f.read().strip().split('\n') if "==" in req and "#" not in req]
+        return [req for req in f.read().strip().split('\n') if "#" not in req]
 
 
 parsed_requirements = parse_requirements(
