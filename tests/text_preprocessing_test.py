@@ -535,6 +535,15 @@ class TestTextPreprocessing(TestCase):
         # Asserts
         self.assertListEqual(output_text, expected_output)
 
+    def test_remove_stopword_negative_stopwords(self):
+        # Setup
+        input_text = 'not no nor'
+        expected_output = ['not', 'no', 'nor']
+        # Actual call
+        output_text = remove_stopword(input_text)
+        # Asserts
+        self.assertListEqual(output_text, expected_output)
+
     def test_remove_stopword_none(self):
         # Setup
         input_text = None
