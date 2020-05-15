@@ -1,7 +1,8 @@
 Text preprocessing for Natural Language Processing
 =============
 
-![](https://github.com/berknology/text-preprocessing/workflows/Build/badge.svg)
+![Build](https://github.com/berknology/text-preprocessing/workflows/Build/badge.svg)
+![Release](https://github.com/berknology/text-preprocessing/workflows/Release/badge.svg)
 ![](https://img.shields.io/pypi/v/text-preprocessing.svg)
 
 
