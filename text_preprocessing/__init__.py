@@ -1,4 +1,4 @@
-__version__ = '0.0.6'
+__version__ = '0.0.7'
 
 from .text_preprocessing import (to_lower, to_upper, remove_number, remove_itemized_bullet_and_numbering, remove_url,
                                  remove_punctuation, remove_special_character, keep_alpha_numeric, remove_whitespace,
