@@ -34,6 +34,25 @@ print(preprocessed_text)
 # output: helllo i am john doe my email is visit our website
 ```
 
+If you have a lot of data to preprocess, and would like to run text preprocessig in a parallel manner in PySpark on 
+Databricks, please use the following udf function:
+```python
+from text_preprocessing import preprocess_text
+from pyspark.sql.functions import udf
+from pyspark.sql.types import StringType
+from pyspark.sql import DataFrame as SparkDataFrame
+
+
+def preprocess_text_spark(df: SparkDataFrame, 
+                          target_column: str, 
+                          preprocessed_column_name: str = 'preprocessed_text'
+                         ) -> SparkDataFrame:
+    """ Preprocess text in a column of a PySpark DataFrame by leveraging PySpark UDF to preprocess text in parallel """
+    _preprocess_text = udf(preprocess_text, StringType())
+    new_df = df.withColumn(preprocessed_column_name, _preprocess_text(df[target_column]))
+    return new_df
+```
+
 Features
 --------
 
