@@ -148,14 +148,13 @@ def normalize_unicode(input_text: str) -> str:
 
 
 @_return_empty_list_for_invalid_input
-def remove_stopword(input_text_or_list: Union[str, List[str]], exceptions: Optional[set] = None) -> List[str]:
-    """ Remove stop words. By default 'not', 'no', and 'nor' are filtered out from stop words. """
-    stop_words = set(stopwords.words('english'))
-    # Ignore negative words for later sentiment analysis task. Negative teams such as 'isn't' will be expanded as
-    # 'is not' by the expand_contraction function if it is used in the preprocessing pipeline
-    if exceptions is None:
-        exceptions = {'not', 'no', 'nor'}
-    stop_words -= exceptions
+def remove_stopword(input_text_or_list: Union[str, List[str]], stop_words: Optional[set] = None) -> List[str]:
+    """ Remove stop words """
+
+    if stop_words is None:
+        stop_words = set(stopwords.words('english'))
+    if isinstance(stop_words, list):
+        stop_words = set(stop_words)
     if isinstance(input_text_or_list, str):
         tokens = word_tokenize(input_text_or_list)
         processed_tokens = [token for token in tokens if token not in stop_words]
