@@ -816,8 +816,8 @@ class TestTextPreprocessing(TestCase):
 
     def test_check_spelling_all_errors(self):
         # Setup
-        input_text = 'Helllo worlld nicee to meeet yuu'
-        expected_output = 'hello world nice to meet you'
+        input_text = 'Helllo worlld nicee to meeet'
+        expected_output = 'hello world nice to meet'
         # Actual call
         output_text = check_spelling(input_text)
         # Asserts
@@ -825,8 +825,8 @@ class TestTextPreprocessing(TestCase):
 
     def test_check_spelling_all_errors_list(self):
         # Setup
-        input_text = ['Helllo', 'worlld', 'nicee', 'to', 'meeet', 'yuu']
-        expected_output = 'hello world nice to meet you'
+        input_text = ['Helllo', 'worlld', 'nicee', 'to', 'meeet']
+        expected_output = 'hello world nice to meet'
         # Actual call
         output_text = check_spelling(input_text)
         # Asserts
