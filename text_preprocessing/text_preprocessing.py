@@ -1,4 +1,5 @@
 # Standard libraries
+import os
 import re
 import string
 import logging
@@ -21,8 +22,8 @@ nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 nltk.download('punkt', quiet=True)
 
-_CUSTOM_SUB_CSV_FILE_PATH = Path(__file__).resolve().parent / 'data' / 'custom_substitutions.csv'
-_IGNORE_SPELLCHECK_WORD_FILE_PATH = Path(__file__).resolve().parent / 'data' / 'ignore_spellcheck_words.txt'
+_CUSTOM_SUB_CSV_FILE_PATH = os.path.join(os.path.dirname(__file__), 'data/custom_substitutions.csv')
+_IGNORE_SPELLCHECK_WORD_FILE_PATH = os.path.join(os.path.dirname(__file__), 'data/ignore_spellcheck_words.txt')
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
