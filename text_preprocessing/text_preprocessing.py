@@ -21,6 +21,7 @@ from names_dataset import NameDataset
 nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 nltk.download('punkt', quiet=True)
+nltk.download('omw-1.4')
 
 _CUSTOM_SUB_CSV_FILE_PATH = os.path.join(os.path.dirname(__file__), 'data/custom_substitutions.csv')
 _IGNORE_SPELLCHECK_WORD_FILE_PATH = os.path.join(os.path.dirname(__file__), 'data/ignore_spellcheck_words.txt')
