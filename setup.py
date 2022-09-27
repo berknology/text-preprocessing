@@ -24,7 +24,7 @@ with open('DESCRIPTION.rst') as description_file:
 
 setup(
     name='text_preprocessing',
-    version='0.1.0',
+    version='0.1.1',
     description="A python package for text preprocessing task in natural language processing",
     long_description=description,
     url='https://github.com/berknology/text-preprocessing',
